@@ -3,6 +3,7 @@ class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         row_dict = defaultdict(set)
         col_dict = defaultdict(set)
+        # difaultdict(set)にして、キーを(1, 1),(1, 2)のようにする方法もある。やや遅いが可読性は高い。
         grid_dict = defaultdict(lambda: defaultdict(set))
         
         for row_index, row in enumerate(board):
