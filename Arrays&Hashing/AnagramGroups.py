@@ -1,8 +1,11 @@
 from collections import defaultdict
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        group_dict = defaultdict(list)
-        for word in strs:
-            sorted_word = ''.join(sorted(word)) # str(sorted(word))は遅い
-            group_dict[sorted_word].append(word)
-        return list(group_dict.values())
+        res = defaultdict(list)
+        for s in strs:
+            c_count = [0] * 26
+            for c in s:
+                c_count[ord(c) - ord("a")] += 1
+            
+            res[tuple(c_count)].append(s)
+        return res.values()

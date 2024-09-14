@@ -1,17 +1,17 @@
 from collections import defaultdict
-# バケットソートを使う
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        count = defaultdict(int)
-        freq = [[] for _ in range(len(nums) + 1)]      
-        for num in nums:
-            count[num] += 1
-        for num, count in count.items():
-            freq[count].append(num)
+        count_dct = defaultdict(int)
+        count_lst = [[] for _ in range(len(nums) + 1)]
+        for n in nums:
+            count_dct[n] += 1
+        for key, v in count_dct.items():
+            count_lst[v].append(key)
+            
         res = []
-        for num in reversed(freq):
-            # リストの連結
-            res.extend(num)
-            if len(res) == k:
-                return res
+        for i in range(len(count_lst) - 1, 0, -1):
+            for num in count_lst[i]:
+                res.append(num)
+                if len(res) == k:
+                    return res
             
