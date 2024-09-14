@@ -1,25 +1,23 @@
 class Solution:
 
     def encode(self, strs: List[str]) -> str:
-        s = ""
-        for word in strs:
-            s = s + str(len(word)) + "#" + word 
-        return s
+        res = ''
+        for s in strs:
+            res = "".join(res + str(len(s)) + "#" + s)
+        return res
 
     def decode(self, s: str) -> List[str]:
-        num_str = ""
+        num = ""
+        i = 0
         res = []
-        j = 0
-        while j < len(s):
-            if s[j] == "#":
-                # "#"の次から、文字数分切り取ってリストに追加
-                res.append(s[j + 1: j + 1 + int(num_str)])
-                j += int(num_str)
-                num_str = ""
-                
+        while i < len(s):
+            if s[i] != "#":
+                num = "".join(num + s[i])
             else:
-                num_str += s[j]
-            j += 1
-        
+                length = int(num)
+                num = ""
+                word = s[i + 1: i + 1 + length]
+                res.append(word)
+                i += length
+            i += 1
         return res
-        
