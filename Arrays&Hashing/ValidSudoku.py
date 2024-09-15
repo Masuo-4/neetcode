@@ -1,22 +1,23 @@
 from collections import defaultdict
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        row_dict = defaultdict(set)
-        col_dict = defaultdict(set)
-        # difaultdict(set)にして、キーを(1, 1),(1, 2)のようにする方法もある。やや遅いが可読性は高い。
-        grid_dict = defaultdict(lambda: defaultdict(set))
-        
-        for row_index, row in enumerate(board):
-            for col_index, num in enumerate(row):
-                if num == ".": continue
-                if (num in row_dict[row_index]\
-                    or num in col_dict[col_index]\
-                    or num in grid_dict[row_index // 3][col_index // 3]):
-                    return False
+        row_dct = defaultdict(set)
+        col_dct = defaultdict(set)
+        grid_dct = defaultdict(set)
+        for row_num, row in enumerate(board):
+            for col_num, digit in enumerate(row):
+                grid_num = row_num // 3 + (col_num // 3) * 3
+                if digit == ".":
+                    continue
                 else:
-                    row_dict[row_index].add(num)
-                    col_dict[col_index].add(num)
-                    grid_dict[row_index // 3][col_index // 3].add(num)
+                    if digit in row_dct[row_num]\
+                        or digit in col_dct[col_num]\
+                        or digit in grid_dct[grid_num]:
+                            return False
+                    else:
+                        row_dct[row_num].add(digit)
+                        col_dct[col_num].add(digit)
+                        grid_dct[grid_num].add(digit)
         
         return True
-                
+    
