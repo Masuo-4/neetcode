@@ -4,12 +4,10 @@ class Solution:
         stack = deque()
         dct = {"}":"{", "]":"[", ")":"("}
         for c in s:
-            if c in dct:
-                if stack and stack[-1] == dct[c]:
-                    stack.pop()
-                else:
-                    return False
-            else:
+            if c not in dct:
                 stack.append(c)
-
-        return True if not stack else False
+                continue
+            if not stack or stack[-1] != dct[c]:
+                return False
+            stack.pop()
+        return not stack 

@@ -6,6 +6,8 @@ class Solution:
         for p, s in lst:
             time = (target - p) / s
             stack.append(time)
+
             if len(stack) >= 2 and stack[-1] <= stack[-2]:
                 stack.pop()
         return len(stack)
+        
