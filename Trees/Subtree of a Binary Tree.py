@@ -20,4 +20,4 @@ class Solution:
         if root and subRoot and root.val == subRoot.val:
             return self.is_same_tree(root.left, subRoot.left) and self.is_same_tree(root.right, subRoot.right)
         return False
-    test
+    
