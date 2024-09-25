@@ -20,13 +20,16 @@ The repository is organized by topics, reflecting the structure of the NeetCode 
 ```
 
 ## How to Use
-To view or run a solution, navigate to the folder for the relevant topic and run the corresponding Python file.
+1. Navigate to the corresponding folder for the problem category (e.g., `Arrays & Hashing`, `Trees`).
+2. Open the Python file for the specific problem.
+3. Visit the related problem page on the [NeetCode website](https://neetcode.io/roadmap).
+4. Copy the content of the Python file and paste it into the NeetCode problem's solution editor.
 
 ### Example:
 
 ```bash
 cd "Arrays & Hashing"
-python problem_name.py
+open problem_name.py
 ```
 
 ## Progress
