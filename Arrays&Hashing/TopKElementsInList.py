@@ -1,17 +1,14 @@
-from collections import defaultdict
+from collections import Counter
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        count_dct = defaultdict(int)
-        count_lst = [[] for _ in range(len(nums) + 1)]
-        for n in nums:
-            count_dct[n] += 1
-        for key, v in count_dct.items():
-            count_lst[v].append(key)
-            
+        counter = Counter(nums)
+        sorted_by_count = counter.most_common()
         res = []
-        for i in range(len(count_lst) - 1, 0, -1):
-            for num in count_lst[i]:
+        for num, count in sorted_by_count:
+            if k < 1:
+                return res
+            else:
                 res.append(num)
-                if len(res) == k:
-                    return res
-            
+                k -= 1
+        return res         
+# valueのみを扱いたいとき、keyをindexとしたlen=len(nums) + 1の空配列を作るのも方法の一つ。

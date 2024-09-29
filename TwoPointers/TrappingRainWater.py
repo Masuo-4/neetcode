@@ -1,18 +1,17 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
-        rain_sum = 0
         l, r = 0, len(height) - 1
-        l_max, r_max = height[l], height[r]
-        rain_sum = 0
-        while l < r :
-            if l_max <= r_max:
+        lmax, rmax = height[l], height[r]
+        water = 0 
+        if not height:
+            return 0
+        while l <= r:
+            if lmax <= rmax:
+                lmax = max(lmax, height[l])
+                water += lmax - height[l]
                 l += 1
-                l_max = max(height[l], l_max)
-                rain_sum += l_max - height[l]
-            elif r_max < l_max:
+            else:
+                rmax = max(rmax, height[r])
+                water += rmax - height[r]
                 r -= 1
-                r_max = max(height[r], r_max)
-                rain_sum += r_max - height[r]
-        
-        return rain_sum
-            
+        return water
