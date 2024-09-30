@@ -22,14 +22,16 @@ class Solution:
  ############################
  
  #nonlocalを使わない別解↓↓↓
- class Solution:
+class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-        def dfs(root, max_val):
-            if not root: return 0
-            res = 1 if root.val >= max_val else 0
-            max_val = max(root.val, max_val)
-            res += dfs(root.left, max_val)
-            res += dfs(root.right, max_val)
+        def dfs(node, max_v):
+            if not node: return 0
+            if node.val >= max_v:
+                res = 1
+            else: res = 0
+            max_v = max(max_v, node.val)
+            res += dfs(node.left, max_v)
+            res += dfs(node.right, max_v)
             return res
+
         return dfs(root, root.val)
-        
